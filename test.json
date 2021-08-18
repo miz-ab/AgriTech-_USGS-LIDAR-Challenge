@@ -1,0 +1,28 @@
+[
+    {
+        "bounds": "([-11669524.7, -11666600.8], [4776607.3, 4778714.4])",
+        "filename": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/USGS_LPC_CO_SoPlatteRiver_Lot5_2013_LAS_2015/ept.json",
+        "type": "readers.ept"
+    },
+    {
+        "limits": "Classification[2:2]",
+        "type": "filters.range",
+        "tag": "classify"
+    },
+    {
+        "filename": "test.laz",
+        "inputs": [ "classify" ],
+        "tag": "writerslas",
+        "type": "writers.las"
+    },
+    {
+        "filename": "test.tif",
+        "gdalopts": "tiled=yes,     compress=deflate",
+        "inputs": [ "writerslas" ],
+        "nodata": -9999,
+        "output_type": "idw",
+        "resolution": 1,
+        "type": "writers.gdal",
+        "window_size": 6
+    }
+]
